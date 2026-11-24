@@ -86,7 +86,7 @@ svg.i{width:1.2em;height:1.2em;fill:currentColor;flex:none;display:block}
 .stamp .ring b{font-size:19px;font-weight:800;letter-spacing:.04em;line-height:1}
 .stamp .ring svg{width:18px;height:18px;margin-bottom:3px}
 .stamp .ring small{font-size:11px;font-weight:700;margin-top:2px;font-family:var(--f-ko)}
-.stamp.s-air{--c:var(--brand)} .stamp.s-food{--c:var(--flame)} .stamp.s-hotel{--c:var(--mint-d)}
+.stamp.s-air{--c:var(--brand)} .stamp.s-food{--c:var(--flame)} .stamp.s-hotel{--c:var(--mint-d)} .stamp.s-talk{--c:var(--gold-d)} .stamp.s-plan{--c:var(--rose-d)} .stamp.s-buy{--c:var(--brand-d)}
 .stamp:not(.on) .ring{--c:var(--muted);border:3px dashed var(--line);box-shadow:none;opacity:.8}
 .stamp .nm{font-size:13px;font-weight:700}
 
@@ -213,3 +213,9 @@ svg.i{width:1.2em;height:1.2em;fill:currentColor;flex:none;display:block}
 .fld{appearance:none;width:100%;min-height:52px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:16px;padding:10px 14px;border-radius:18px}
 .fld::placeholder{color:var(--muted);opacity:1}
 .fld:focus{outline:3px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+/* 출근 준비 모드 */
+.cmnow{display:flex;flex-direction:column;gap:10px}
+.cmph{font-weight:800;font-size:15px;border-radius:999px;padding:6px 14px;align-self:flex-start;background:var(--brand-soft);color:var(--brand-d)}
+.cmph[data-say="1"]{background:var(--flame);color:#fff}
+.cmen{font-family:var(--f-en);font-weight:800;font-size:26px;line-height:1.25}
+.cmko{font-size:15px;color:var(--muted)}

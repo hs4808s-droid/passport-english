@@ -51,6 +51,12 @@ $app.addEventListener("click", e => {
     case "pstart": runPlay(); break;
     case "pstop": runTok++; stopSound(); view.playing = false; view.you = false; render(); break;
     case "gLogin": case "eLogin": case "eSignup": case "eReset": case "cSync": case "cOut": case "cOutNo": case "cOut2": cloud.act(a); break;
+    case "commute": cmOpen(); break;
+    case "cmpick": cmPick(v); break;
+    case "cmtog": cmToggle(); break;
+    case "cmprev": cmStep(-1); break;
+    case "cmnext": cmStep(1); break;
+    case "cmloop": cmLoop = !cmLoop; render(); break;
     case "prate": st.rate = st.rate === 1 ? .8 : 1; store.save(); render(); break;
   }
 });

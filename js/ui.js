@@ -79,6 +79,7 @@ function vModes() {
     <button class="btn mode" data-act="pick" data-v="role"><span class="mi">${ic("chat")}</span><span><b>상황극</b><span class="d">앱이 직원, 내가 손님이 되어 대화해요</span></span></button>
     <button class="btn mode" data-act="pick" data-v="shadow"><span class="mi">${ic("wave")}</span><span><b>쉐도잉</b><span class="d">음성을 듣고 바로 따라 말해요</span></span></button>
     <button class="btn mode" data-act="pick" data-v="listen"><span class="mi">${ic("headset")}</span><span><b>듣기</b><span class="d">소리 내지 않고 듣기만 해요. 이동 중에 좋아요</span></span></button>
+    <button class="btn mode" data-act="commute"><span class="mi">${ic("headset")}</span><span><b>출근 준비 모드</b><span class="d">버튼 없이 계속 들려줘요. 한 문장을 두 번, 쉬는 시간마다 따라 말해요</span></span></button>
     <button class="btn mode" disabled><span class="mi">${ic("lock")}</span><span><b>AI와 자유 대화</b><span class="d">곧 추가돼요</span></span></button>
   </section>`, "modes");
 }
@@ -293,7 +294,7 @@ function countUp(el, to) {
   (function f(t) { s = s || t; const k = Math.min(1, (t - s) / 900); el.textContent = "+" + Math.round(to * k); if (k < 1 && document.body.contains(el)) requestAnimationFrame(f); })(performance.now());
 }
 function render() {
-  const V = { home: vHome, modes: vModes, record: vRecord, settings: vSettings, test: vTest, session: vSession, done: vDone, role: vRole, play: vPlay };
+  const V = { home: vHome, modes: vModes, record: vRecord, settings: vSettings, test: vTest, session: vSession, done: vDone, role: vRole, play: vPlay, commute: vCommute };
   $app.innerHTML = V[view.name]();
   if (view.name === "done" && !view.fx) { view.fx = 1; confetti(); countUp(document.getElementById("xpn"), S.xp); }
 }

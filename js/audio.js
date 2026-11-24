@@ -49,6 +49,7 @@ function stopSound() {
 }
 function speak(text, rate) {
   rate = rate || st.rate;
+  if (typeof cmPause === "function") cmPause();   // 출근 준비 모드가 재생 중이면 멈춘다
   stopSound();
   return new Promise(res => {
     const synth = () => {

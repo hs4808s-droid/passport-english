@@ -31,9 +31,14 @@ function achievements() {
     { id: "b_s3", kind: "badge", name: "3일 연속", desc: "3일 연속으로 공부했어요", ok: (st.best || 0) >= 3, ic: "flame" },
     { id: "b_f10", kind: "badge", name: "10초 챌린저", desc: "10초 안에 말한 문장 10개", ok: s.fast >= 10, ic: "bolt" },
     { id: "b_week", kind: "badge", name: "한 주 완주", desc: "7일차까지 마쳤어요", ok: st.day >= 7, ic: "star" },
-    { id: "b_s7", kind: "badge", name: "7일 연속", desc: "7일 연속으로 공부했어요", ok: (st.best || 0) >= 7, ic: "flame" },
-    { id: "b_goal", kind: "badge", name: "목표 달성", desc: "30문장을 모두 10초 안에", ok: s.total > 0 && s.fast >= s.total, ic: "star" }
+    { id: "b_week2", kind: "badge", name: "두 주 완주", desc: "14일차까지 마쳤어요", ok: st.day >= 14, ic: "star" },
+    { id: "b_s7", kind: "badge", name: "7일 연속", desc: "7일 연속으로 공부했어요", ok: (st.best || 0) >= 7, ic: "flame" }
   );
+  // 묶음(여행·일상 대화…)마다 "모든 문장을 10초 안에" 목표 배지
+  PACKS.forEach(p => {
+    const ids = p.scenes.flatMap(sc => sc.items.map(i => i.id));
+    A.push({ id: p.id === "travel" ? "b_goal" : "b_goal_" + p.id, kind: "badge", name: p.id === "travel" ? "목표 달성" : p.title + " 목표", desc: p.title + " " + ids.length + "문장을 모두 " + GOAL_SEC + "초 안에", ok: ids.length > 0 && ids.every(i => st.cards[i] && st.cards[i].fast), ic: "star" });
+  });
   return A;
 }
 const lvInfo = () => { const x = st.xp || 0, lv = Math.floor(x / 100) + 1; return { lv, into: x % 100, name: RANKS[Math.min(lv - 1, RANKS.length - 1)] }; };
@@ -46,8 +51,7 @@ function stampHTML(sc) {
 /* ---------- 일차 계획 ---------- */
 function dayPlan(D) {
   const w = (D - 1) % WEEK + 1, W = Math.ceil(D / WEEK);
-  const learnIdx = d => (Math.ceil(d / WEEK) - 1) * (WEEK - 1) + ((d - 1) % WEEK);   // d일차가 몇 번째 학습일인지(0부터)
-  const newOf = d => ITEMS.slice(learnIdx(d) * PER_DAY, learnIdx(d) * PER_DAY + PER_DAY);
+  const newOf = dayNew;   // config.js
   if (w === WEEK) {
     let rev = []; for (let d = D - WEEK + 1; d < D; d++) rev = rev.concat(newOf(d));
     return { D, W, w, weekly: true, review: rev, fresh: [] };
