@@ -14,7 +14,7 @@ $app.addEventListener("click", e => {
     case "rate": st.rate = +v; store.save(); render(); break;
     case "rec": st.rec = !st.rec; store.save(); render(); break;
     case "reset": view.ask = true; render(); break;
-    case "reset2": st = blank(); store.save(); go("home"); break;
+    case "reset2": st = blank(); st.epoch = Date.now(); store.save(); go("home"); break;      // epoch: 로그인한 다른 기기의 옛 기록이 되살아나지 않게 하는 표시
     case "sound": speak("Where is the check-in counter?").then(render); break;
     case "play": speak(it.en); break;
     case "slow": speak(it.en, .75); break;
@@ -50,10 +50,12 @@ $app.addEventListener("click", e => {
     }
     case "pstart": runPlay(); break;
     case "pstop": runTok++; stopSound(); view.playing = false; view.you = false; render(); break;
+    case "gLogin": case "eLogin": case "eSignup": case "eReset": case "cSync": case "cOut": case "cOutNo": case "cOut2": cloud.act(a); break;
     case "prate": st.rate = st.rate === 1 ? .8 : 1; store.save(); render(); break;
   }
 });
 render();
+cloud.init();
 window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEv = e; if (view.name === "settings") render(); });
 if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
   window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));

@@ -98,9 +98,10 @@ function vSettings() {
     <p class="small muted">말하기 확인: ${chk}</p>
     ${recBlocked ? `<p class="small muted">내 녹음 듣기: 이 화면에서는 쓸 수 없어요</p>` : `<button class="btn" data-act="rec">내 녹음 다시 듣기: ${st.rec ? "켜짐" : "꺼짐"} (시험 기능)</button>`}
   </section>
+  ${cloud.html()}
   <section class="card"><h2>앱으로 설치</h2>${installHTML()}</section>
   <section class="card"><h2>기록</h2>
-    <p class="small muted">기록은 이 기기에만 저장돼요. 로그인은 없어요.</p>
+    <p class="small muted">${cloud.isIn() ? "기록은 이 기기와 로그인한 계정에 저장돼요. 지우면 로그인한 모든 기기에서 지워져요." : "기록은 이 기기에만 저장돼요. 로그인하면 계정에도 저장할 수 있어요."}</p>
     <button class="btn" data-act="reset">기록 지우고 처음부터</button>
     ${view.ask ? `<div class="row"><button class="btn rose" data-act="reset2">정말 지우기</button><button class="btn" data-act="tab" data-v="settings">취소</button></div>` : ""}
   </section>`, "settings");

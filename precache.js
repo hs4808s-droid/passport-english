@@ -1,5 +1,5 @@
 // 자동 생성 파일 (tools/make-precache.js). 직접 고치지 않는다.
-self.APP_VERSION = "f979b4dd20";
+self.APP_VERSION = "d980d85434";
 self.PRECACHE = [
  "./",
  "audio/a1.mp3",
@@ -64,10 +64,13 @@ self.PRECACHE = [
  "icons/icon.svg",
  "index.html",
  "js/audio.js",
+ "js/cloud.js",
  "js/config.js",
  "js/engine.js",
+ "js/firebase-config.js",
  "js/icons.js",
  "js/main.js",
+ "js/merge.js",
  "js/store.js",
  "js/ui.js",
  "manifest.webmanifest"

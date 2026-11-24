@@ -3,7 +3,7 @@
 // 파일을 고치거나 추가한 뒤에는 꼭 다시 실행해야 사용자 기기에 새 내용이 전달된다.
 const fs = require("fs"), path = require("path"), crypto = require("crypto");
 const root = path.join(__dirname, "..");
-const SKIP = new Set(["tools", "docs", "node_modules", ".git"]);
+const SKIP = new Set(["tools", "docs", "node_modules", ".git", "vendor"]);   // vendor(Firebase)는 로그인할 때만 불러오므로 처음 설치에는 넣지 않는다
 const FILES = [];
 (function walk(d) {
   for (const n of fs.readdirSync(d)) {
